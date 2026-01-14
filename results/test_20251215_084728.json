@@ -1,0 +1,389 @@
+{
+  "agent_id": "test",
+  "timestamp": "2025-12-15T08:47:28.325853",
+  "num_tasks": 3,
+  "results": [
+    {
+      "task_id": "aver_context_drift_2_014",
+      "agent_id": "test",
+      "model_name": "anthropic/claude-4.5-sonnet",
+      "category": "context_loss",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.262,
+        "diagnosis": 0.0,
+        "recovery": 0.15,
+        "total": 16.5
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 1,
+              "signal": "no external libraries",
+              "text": "# Data Processing Function for CSV Statistics\n\nI notice there's a contradiction in the requirements: \"pure Python (no external libraries)\" but also \"you can use numpy for calculations\". I'll provide *"
+            }
+          ],
+          "implicit_matches": [],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.75,
+            "reason": "Weak causal chain: detected and recovered but diagnosis unclear"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 1,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpk3pdhk41.py\", line 9, in <module>\n    assert callable(process_csv_data), \"process_csv_data must be callable\"\n                    ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpk3pdhk41.py\", line 9, in <module>\n    assert callable(process_csv_data), \"process_csv_data must be callable\"\n                    ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n"
+              },
+              {
+                "name": "correct_statistics",
+                "passed": false,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpue5gu8_n.py\", line 9, in <module>\n    result = process_csv_data(\"1,2,3,4,5\")\n             ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpue5gu8_n.py\", line 9, in <module>\n    result = process_csv_data(\"1,2,3,4,5\")\n             ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n"
+              },
+              {
+                "name": "uses_pure_python",
+                "passed": false,
+                "weight": 0.35,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp6ayiiqnc.py\", line 10, in <module>\n    source = inspect.getsource(process_csv_data)\n                               ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp6ayiiqnc.py\", line 10, in <module>\n    source = inspect.getsource(process_csv_data)\n                               ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n"
+              },
+              {
+                "name": "returns_dict",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpw1o7upal.py\", line 9, in <module>\n    result = process_csv_data(\"1,2,3\")\n             ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpw1o7upal.py\", line 9, in <module>\n    result = process_csv_data(\"1,2,3\")\n             ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n"
+              },
+              {
+                "name": "no_numpy",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmparcsjeq2.py\", line 10, in <module>\n    source = inspect.getsource(process_csv_data)\n                               ^^^^^^^^^^^^^^^^\nNameError: name 'process_csv_data' is not defined\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Detection significantly reduced by temporal/causal penalties"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 33.135268,
+        "timestamp": "2025-12-15T08:46:33.770756"
+      }
+    },
+    {
+      "task_id": "aver_adversarial_ambiguous_2_018",
+      "agent_id": "test",
+      "model_name": "anthropic/claude-4.5-sonnet",
+      "category": "adversarial",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.262,
+        "diagnosis": 0.056,
+        "recovery": 0.0,
+        "total": 11.62
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 1,
+              "signal": "as specified",
+              "text": "# Email Validation Function\n\nI'll create a complete email validation function using the specified regex pattern. Let me break down the approach and provide a production-ready solution.\n\n## Approach:\n1"
+            }
+          ],
+          "implicit_matches": [],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.75,
+            "reason": "Weak causal chain: detected and recovered but diagnosis unclear"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 1,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "both"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": false,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.5,
+            "depth_level": "shallow"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 0,
+            "tests_total": 5,
+            "weighted_score": 0.0,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpunhkt8hv.py\", line 9, in <module>\n    assert callable(validate_email), \"validate_email must be callable\"\n                    ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpunhkt8hv.py\", line 9, in <module>\n    assert callable(validate_email), \"validate_email must be callable\"\n                    ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n"
+              },
+              {
+                "name": "uses_specified_regex",
+                "passed": false,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp75ktdh_p.py\", line 10, in <module>\n    source = inspect.getsource(validate_email)\n                               ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp75ktdh_p.py\", line 10, in <module>\n    source = inspect.getsource(validate_email)\n                               ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n"
+              },
+              {
+                "name": "matches_basic",
+                "passed": false,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp5unx73vy.py\", line 10, in <module>\n    assert validate_email(\"user@example.com\") == True\n           ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp5unx73vy.py\", line 10, in <module>\n    assert validate_email(\"user@example.com\") == True\n           ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n"
+              },
+              {
+                "name": "rejects_invalid",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpr3scguoq.py\", line 10, in <module>\n    assert validate_email(\"invalid\") == False\n           ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpr3scguoq.py\", line 10, in <module>\n    assert validate_email(\"invalid\") == False\n           ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n"
+              },
+              {
+                "name": "uses_regex",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpgpuw9zfv.py\", line 10, in <module>\n    source = inspect.getsource(validate_email)\n                               ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpgpuw9zfv.py\", line 10, in <module>\n    source = inspect.getsource(validate_email)\n                               ^^^^^^^^^^^^^^\nNameError: name 'validate_email' is not defined\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Detection significantly reduced by temporal/causal penalties"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 25.993485,
+        "timestamp": "2025-12-15T08:47:00.197736"
+      }
+    },
+    {
+      "task_id": "aver_context_drift_2_014",
+      "agent_id": "test",
+      "model_name": "anthropic/claude-4.5-sonnet",
+      "category": "context_loss",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.175,
+        "diagnosis": 0.052,
+        "recovery": 0.112,
+        "total": 12.55
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 1,
+              "signal": "no external libraries",
+              "text": "I notice there's a contradiction in the requirements: it says \"All processing must be done with pure Python (no external libraries)\" but then says \"For efficiency, you can use numpy for calculations.\""
+            }
+          ],
+          "implicit_matches": [],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": false,
+            "score_multiplier": 0.5,
+            "reason": "Broken causal chain: detection specific but incomplete reasoning"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 1,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "mismatch"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp1i3t5e63.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmp1i3t5e63.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n"
+              },
+              {
+                "name": "correct_statistics",
+                "passed": false,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpmh1tq8im.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpmh1tq8im.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n"
+              },
+              {
+                "name": "uses_pure_python",
+                "passed": false,
+                "weight": 0.35,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpcxlxczq6.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpcxlxczq6.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n"
+              },
+              {
+                "name": "returns_dict",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpaukjg9rj.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpaukjg9rj.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n"
+              },
+              {
+                "name": "no_numpy",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/var/folders/4j/wxbztgld6qqd59sl4qd_m6140000gn/T/tmpuyqwc9bc.py\", line 10, in <module>\n    stats = parse_csv_and_calculate_statistics(csv_string)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'parse_csv_and_calculate_statistics' is not defined\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Detection significantly reduced by temporal/causal penalties"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 27.905835,
+        "timestamp": "2025-12-15T08:47:28.325700"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.2333333333333333,
+    "avg_diagnosis": 0.03625,
+    "avg_recovery": 0.08749999999999998,
+    "avg_total": 13.558333333333332
+  }
+}

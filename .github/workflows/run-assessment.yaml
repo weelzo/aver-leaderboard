@@ -1,0 +1,34 @@
+name: Update AVER Leaderboard
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'results/**'
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating config.json..."
+          python3 -m json.tool config.json > /dev/null
+
+          echo "Validating result files..."
+          for f in results/*.json; do
+            if [ -f "$f" ]; then
+              echo "  Checking $f"
+              python3 -m json.tool "$f" > /dev/null
+            fi
+          done
+
+          echo "✓ All JSON files valid"
+
+  # Note: Actual assessments are run via AgentBeats platform
+  # Results are uploaded to results/ directory manually or via AgentBeats API
+  # See: https://agentbeats.dev/benchmarks/aver

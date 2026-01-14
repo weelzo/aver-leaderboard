@@ -1,0 +1,11 @@
+# Local development
+.DS_Store
+.env
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# History (if using local history plugin)
+.history/
