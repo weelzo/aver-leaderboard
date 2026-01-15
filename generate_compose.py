@@ -69,6 +69,7 @@ services:
       PARTICIPANT_ID: "{participant_name}"
       PARTICIPANTS_JSON: '{participants_json}'
       TASKS_JSON: '{tasks_json}'
+      AGENTBEATS_AGENT_ID: "{agentbeats_agent_id}"
 {green_env}
     volumes:
       - ./output:/app/results
@@ -214,6 +215,9 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     tasks_list = config.get("tasks", [])
     tasks_json = json.dumps(tasks_list)
 
+    # Get AgentBeats agent ID for results (registered UUID)
+    agentbeats_agent_id = green.get("agentbeats_id", "")
+
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=GREEN_AGENT_PORT,
@@ -221,6 +225,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
         participant_port=PARTICIPANT_PORT,
         participants_json=participants_json,
         tasks_json=tasks_json,
+        agentbeats_agent_id=agentbeats_agent_id,
         green_env=format_env_vars(green.get("env", {})),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
