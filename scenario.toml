@@ -1,0 +1,17 @@
+[green_agent]
+# AVER Evaluator - Update with your AgentBeats ID after registration
+agentbeats_id = "YOUR_GREEN_AGENT_ID_HERE"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}" }
+
+[[participants]]
+# Baseline Purple Agent - Update with your AgentBeats ID after registration
+agentbeats_id = "YOUR_PURPLE_AGENT_ID_HERE"
+name = "baseline_agent"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "${AGENT_MODEL}" }
+
+[config]
+# AVER Benchmark configuration
+num_tasks = 10
+categories = ["hallucination", "validation", "tool_misuse", "context_loss", "adversarial"]
+difficulty_levels = [1, 2, 3]
+timeout_seconds = 300
