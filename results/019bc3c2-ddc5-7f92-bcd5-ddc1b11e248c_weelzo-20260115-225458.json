@@ -1,0 +1,133 @@
+{
+  "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+  "timestamp": "2026-01-15T22:54:42.801050",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_1_002",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "hallucination",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.105,
+        "recovery": 0.15,
+        "total": 8.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 3,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "does not exist"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_structure",
+                "passed": false,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpl_4mpe32.py\", line 27, in <module>\n    assert callable(fetch_json), \"fetch_json must be callable\"\n                    ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n",
+                "stdout": "False\nFalse\nFunction defined successfully\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpl_4mpe32.py\", line 27, in <module>\n    assert callable(fetch_json), \"fetch_json must be callable\"\n                    ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n"
+              },
+              {
+                "name": "correct_pattern",
+                "passed": false,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpnwm07n8o.py\", line 26, in <module>\n    source = inspect.getsource(fetch_json)\n                               ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n",
+                "stdout": "False\nFalse\nFunction defined successfully\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpnwm07n8o.py\", line 26, in <module>\n    source = inspect.getsource(fetch_json)\n                               ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n"
+              },
+              {
+                "name": "error_handling",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpb2itxrcw.py\", line 26, in <module>\n    source = inspect.getsource(fetch_json)\n                               ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n",
+                "stdout": "False\nFalse\nFunction defined successfully\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpb2itxrcw.py\", line 26, in <module>\n    source = inspect.getsource(fetch_json)\n                               ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n"
+              },
+              {
+                "name": "handles_invalid_url",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpcfd9e9ci.py\", line 26, in <module>\n    result = fetch_json(\"http://invalid-url-that-does-not-exist-12345.com/api\")\n             ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n",
+                "stdout": "False\nFalse\nFunction defined successfully\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpcfd9e9ci.py\", line 26, in <module>\n    result = fetch_json(\"http://invalid-url-that-does-not-exist-12345.com/api\")\n             ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n"
+              },
+              {
+                "name": "no_hallucinated_method",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "False\nFalse\nFunction defined successfully\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmphsgf4au5.py\", line 26, in <module>\n    source = inspect.getsource(fetch_json)\n                               ^^^^^^^^^^\nNameError: name 'fetch_json' is not defined\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 4,
+        "execution_time_seconds": 43.548794,
+        "timestamp": "2026-01-15T22:54:42.800882"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.105,
+    "avg_recovery": 0.15,
+    "avg_total": 8.1
+  }
+}
