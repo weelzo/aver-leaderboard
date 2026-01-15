@@ -64,10 +64,11 @@ services:
     platform: linux/amd64
     container_name: green-agent
     environment:
-      - AGENT_URL=http://green-agent:{green_port}
-      - PARTICIPANT_URL=http://{participant_name}:{participant_port}
-      - PARTICIPANT_ID={participant_name}
-      - PARTICIPANTS_JSON='{participants_json}'{green_env}
+      AGENT_URL: "http://green-agent:{green_port}"
+      PARTICIPANT_URL: "http://{participant_name}:{participant_port}"
+      PARTICIPANT_ID: "{participant_name}"
+      PARTICIPANTS_JSON: '{participants_json}'
+{green_env}
     volumes:
       - ./output:/app/results
     healthcheck:
@@ -102,7 +103,8 @@ PARTICIPANT_TEMPLATE = """  {name}:
     image: {image}
     platform: linux/amd64
     container_name: {name}
-    environment:{env}
+    environment:
+{env}
     networks:
       - agent-network
 """
@@ -158,10 +160,10 @@ def parse_scenario(scenario_path: Path) -> dict[str, Any]:
     return data
 
 def format_env_vars(env_dict: dict[str, Any]) -> str:
-    """Format environment variables for docker-compose."""
+    """Format environment variables for docker-compose (mapping format)."""
     env_vars = {**DEFAULT_ENV_VARS, **env_dict}
-    lines = [f"      - {key}={value}" for key, value in env_vars.items()]
-    return "\n" + "\n".join(lines)
+    lines = [f'      {key}: "{value}"' for key, value in env_vars.items()]
+    return "\n".join(lines)
 
 def format_depends_on(services: list, healthy_services: list = None) -> str:
     """Format depends_on section for docker-compose.
