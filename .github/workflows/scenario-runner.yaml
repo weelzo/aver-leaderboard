@@ -1,6 +1,9 @@
 name: Run AVER Assessment
 
 on:
+  push:
+    branches:
+      - '**'
   workflow_dispatch:
     inputs:
       agent_model:
