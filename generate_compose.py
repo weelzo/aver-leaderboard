@@ -67,6 +67,8 @@ services:
       - AGENT_URL=http://green-agent:{green_port}
       - PARTICIPANT_URL=http://{participant_name}:{participant_port}
       - PARTICIPANT_ID={participant_name}{green_env}
+    volumes:
+      - ./output:/app/results
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/health')"]
       interval: 5s

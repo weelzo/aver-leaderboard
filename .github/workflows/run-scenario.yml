@@ -94,7 +94,25 @@ jobs:
         run: |
           mkdir -p submissions results
           cp scenario.toml submissions/${{ steps.metadata.outputs.unique_name }}.toml
-          cp output/results.json results/${{ steps.metadata.outputs.unique_name }}.json
+          # Find and merge all result files from green-agent
+          RESULT_FILES=$(find output -name "*.json" ! -name "provenance.json" ! -name "results.json" 2>/dev/null | head -20)
+          if [ -n "$RESULT_FILES" ]; then
+            # Combine all result files into one
+            echo '{"results": [' > results/${{ steps.metadata.outputs.unique_name }}.json
+            first=true
+            for f in $RESULT_FILES; do
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo ',' >> results/${{ steps.metadata.outputs.unique_name }}.json
+              fi
+              cat "$f" >> results/${{ steps.metadata.outputs.unique_name }}.json
+            done
+            echo ']}' >> results/${{ steps.metadata.outputs.unique_name }}.json
+          else
+            # Fallback to agentbeats-client results
+            cp output/results.json results/${{ steps.metadata.outputs.unique_name }}.json
+          fi
           cp output/provenance.json submissions/${{ steps.metadata.outputs.unique_name }}.provenance.json
 
       - name: Determine target repository
