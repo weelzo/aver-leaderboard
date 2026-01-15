@@ -67,7 +67,7 @@ services:
       - AGENT_URL=http://green-agent:{green_port}
       - PARTICIPANT_URL=http://{participant_name}:{participant_port}
       - PARTICIPANT_ID={participant_name}
-      - PARTICIPANTS_JSON={participants_json}{green_env}
+      - PARTICIPANTS_JSON='{participants_json}'{green_env}
     volumes:
       - ./output:/app/results
     healthcheck:
@@ -204,7 +204,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     # Build participants JSON for green agent to test all participants
     import json
     participants_list = [{"name": p["name"]} for p in participants]
-    participants_json = json.dumps(participants_list).replace('"', '\\"')
+    participants_json = json.dumps(participants_list)
 
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
