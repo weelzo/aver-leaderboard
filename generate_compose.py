@@ -68,6 +68,7 @@ services:
       PARTICIPANT_URL: "http://{participant_name}:{participant_port}"
       PARTICIPANT_ID: "{participant_name}"
       PARTICIPANTS_JSON: '{participants_json}'
+      TASKS_JSON: '{tasks_json}'
 {green_env}
     volumes:
       - ./output:/app/results
@@ -208,12 +209,18 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     participants_list = [{"name": p["name"]} for p in participants]
     participants_json = json.dumps(participants_list)
 
+    # Build tasks JSON from config section
+    config = scenario.get("config", {})
+    tasks_list = config.get("tasks", [])
+    tasks_json = json.dumps(tasks_list)
+
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=GREEN_AGENT_PORT,
         participant_name=first_participant,
         participant_port=PARTICIPANT_PORT,
         participants_json=participants_json,
+        tasks_json=tasks_json,
         green_env=format_env_vars(green.get("env", {})),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
