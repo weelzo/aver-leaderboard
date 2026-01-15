@@ -66,7 +66,7 @@ services:
     environment:
       AGENT_URL: "http://green-agent:{green_port}"
       PARTICIPANT_URL: "http://{participant_name}:{participant_port}"
-      PARTICIPANT_ID: "{participant_name}"
+      PARTICIPANT_ID: "{participant_id}"
       PARTICIPANTS_JSON: '{participants_json}'
       TASKS_JSON: '{tasks_json}'
       AGENTBEATS_AGENT_ID: "{agentbeats_agent_id}"
@@ -204,10 +204,19 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
 
     # Get first participant for PARTICIPANT_URL (fallback)
     first_participant = participants[0]["name"] if participants else "baseline_agent"
+    # Use agentbeats_id as participant ID if available
+    first_participant_id = participants[0].get("agentbeats_id", first_participant) if participants else "baseline_agent"
 
     # Build participants JSON for green agent to test all participants
+    # Use agentbeats_id as the identifier if available, otherwise fall back to name
     import json
-    participants_list = [{"name": p["name"]} for p in participants]
+    participants_list = [
+        {
+            "name": p["name"],
+            "agent_id": p.get("agentbeats_id", p["name"])
+        }
+        for p in participants
+    ]
     participants_json = json.dumps(participants_list)
 
     # Build tasks JSON from config section
@@ -222,6 +231,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
         green_image=green["image"],
         green_port=GREEN_AGENT_PORT,
         participant_name=first_participant,
+        participant_id=first_participant_id,
         participant_port=PARTICIPANT_PORT,
         participants_json=participants_json,
         tasks_json=tasks_json,

@@ -5,7 +5,7 @@
   "results": [
     {
       "task_id": "aver_hallucination_code_api_1_002",
-      "agent_id": "claude_opus_4_5",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
       "model_name": "anthropic/claude-sonnet-4.5",
       "category": "hallucination",
       "difficulty": 1,

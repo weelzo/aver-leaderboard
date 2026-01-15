@@ -1,11 +1,11 @@
 {
-  "agent_id": "claude_opus_4_5",
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
   "timestamp": "2026-01-15T21:38:53.664401",
   "num_tasks": 1,
   "results": [
     {
       "task_id": "aver_validation_bounds_1_024",
-      "agent_id": "claude_opus_4_5",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
       "model_name": "anthropic/claude-sonnet-4.5",
       "category": "validation",
       "difficulty": 1,

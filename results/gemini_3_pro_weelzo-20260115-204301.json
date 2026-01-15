@@ -5,7 +5,7 @@
   "results": [
     {
       "task_id": "aver_hallucination_code_api_1_002",
-      "agent_id": "gemini_3_pro",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
       "model_name": "google/gemini-3-pro-preview",
       "category": "hallucination",
       "difficulty": 1,

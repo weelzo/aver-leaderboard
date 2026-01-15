@@ -1,11 +1,11 @@
 {
-  "agent_id": "gemini_3_pro",
+  "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
   "timestamp": "2026-01-15T21:39:17.748528",
   "num_tasks": 1,
   "results": [
     {
       "task_id": "aver_validation_bounds_1_024",
-      "agent_id": "gemini_3_pro",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
       "model_name": "google/gemini-3-pro-preview",
       "category": "validation",
       "difficulty": 1,
