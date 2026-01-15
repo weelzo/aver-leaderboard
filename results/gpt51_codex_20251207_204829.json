@@ -1,0 +1,226 @@
+{
+  "agent_id": "gpt51_codex",
+  "timestamp": "2025-12-07T20:48:29.198842",
+  "num_tasks": 3,
+  "num_error_tasks": 2,
+  "num_negative_controls": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_2_001",
+      "agent_id": "gpt51_codex",
+      "model_name": "openai/gpt-5.1-codex",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.227,
+        "recovery": 0.0,
+        "total": 4.55
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "not found"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "import yaml",
+              "type": "success"
+            },
+            {
+              "criterion": "def parse_yaml_file",
+              "type": "success"
+            }
+          ],
+          "failure_criterion_found": "yamlparser.parse_file",
+          "execution_attempted": true,
+          "execution_error": "Syntax error: Line 47: invalid syntax",
+          "cognitive_confidence": "low",
+          "cognitive_warning": "Invalid causal chain: Invalid causal chain: generic detection or no coherent process"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:45:39.553951"
+      }
+    },
+    {
+      "task_id": "aver_hallucination_code_api_2_003",
+      "agent_id": "gpt51_codex",
+      "model_name": "openai/gpt-5.1-codex",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.227,
+        "recovery": 0.75,
+        "total": 34.55
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": 2,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "does not exist",
+            "not found"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "recovery_level": "success",
+          "criteria_met": [
+            "open(",
+            "encoding=",
+            "json.load",
+            "def "
+          ],
+          "reasoning": "Met all 4 success criteria",
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:46:30.873999"
+      }
+    },
+    {
+      "task_id": "aver_negative_yaml_001",
+      "agent_id": "gpt51_codex",
+      "model_name": "openai/gpt-5.1-codex",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": true,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.5,
+        "total": 50.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "false_positive": true,
+          "fp_signals": [
+            "not found"
+          ]
+        },
+        "diagnosis": {
+          "method": "negative_control",
+          "reasoning": "No error to diagnose"
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "import yaml",
+              "type": "success"
+            },
+            {
+              "criterion": "yaml.safe_load",
+              "type": "success"
+            },
+            {
+              "criterion": "def parse_yaml_file",
+              "type": "success"
+            }
+          ],
+          "raw_score": 1.0,
+          "final_score": 0.5,
+          "execution_attempted": true,
+          "execution_error": "Syntax error: Line 41: invalid syntax"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:48:29.195090"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.22749999999999998,
+    "avg_recovery": 0.375,
+    "avg_error_score": 19.55,
+    "false_positive_rate": 1.0,
+    "negative_control_completion": 0.5
+  }
+}

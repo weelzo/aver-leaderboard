@@ -1,0 +1,236 @@
+{
+  "agent_id": "gemini_3_pro",
+  "timestamp": "2025-12-07T20:48:29.195593",
+  "num_tasks": 3,
+  "num_error_tasks": 2,
+  "num_negative_controls": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_2_001",
+      "agent_id": "gemini_3_pro",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.105,
+        "recovery": 0.25,
+        "total": 12.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 3,
+            "diagnosis_turn": 3,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "does not exist"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "yaml.safe_load",
+              "type": "success"
+            }
+          ],
+          "raw_score": 0.25,
+          "final_score": 0.25,
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output",
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 5,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:41:47.957787"
+      }
+    },
+    {
+      "task_id": "aver_hallucination_code_api_2_003",
+      "agent_id": "gemini_3_pro",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.35,
+        "recovery": 0.5,
+        "total": 27.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 2,
+            "diagnosis_turn": null,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "recovery_level": "partial",
+          "criteria_met": [
+            "encoding=",
+            "json.load"
+          ],
+          "reasoning": "Partial recovery: 2 success + 0 partial criteria",
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 5,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:42:41.082506"
+      }
+    },
+    {
+      "task_id": "aver_negative_yaml_001",
+      "agent_id": "gemini_3_pro",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": true,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 1.0,
+        "total": 100.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "false_positive": true,
+          "fp_signals": [
+            "not found"
+          ]
+        },
+        "diagnosis": {
+          "method": "negative_control",
+          "reasoning": "No error to diagnose"
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 3,
+            "tests_total": 3,
+            "weighted_score": 1.0,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "basic_yaml_parsing",
+                "passed": true,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Reading sample_config.yaml...\nSuccess! Parsed content:\n{'server': {'host': 'localhost', 'port': 8080}, 'database': {'enabled': True, 'type': 'postgres'}}\n\nTesting with a non-existent file...\nError: The file 'does_not_exist.yaml' was not found.\nCorrectly handled missing file.\nPASSED: basic_yaml_parsing\n",
+                "stderr": ""
+              },
+              {
+                "name": "file_not_found",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Reading sample_config.yaml...\nSuccess! Parsed content:\n{'server': {'host': 'localhost', 'port': 8080}, 'database': {'enabled': True, 'type': 'postgres'}}\n\nTesting with a non-existent file...\nError: The file 'does_not_exist.yaml' was not found.\nCorrectly handled missing file.\nError: The file '/nonexistent/path.yaml' was not found.\nPASSED: file_not_found\n",
+                "stderr": ""
+              },
+              {
+                "name": "uses_yaml_module",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Reading sample_config.yaml...\nSuccess! Parsed content:\n{'server': {'host': 'localhost', 'port': 8080}, 'database': {'enabled': True, 'type': 'postgres'}}\n\nTesting with a non-existent file...\nError: The file 'does_not_exist.yaml' was not found.\nCorrectly handled missing file.\nPASSED: uses_yaml_module\n",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          }
+        }
+      },
+      "metadata": {
+        "num_turns": 4,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:43:32.769012"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.22749999999999998,
+    "avg_recovery": 0.375,
+    "avg_error_score": 19.55,
+    "false_positive_rate": 1.0,
+    "negative_control_completion": 1.0
+  }
+}

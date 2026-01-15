@@ -1,0 +1,133 @@
+{
+  "agent_id": "claude_opus_4_5",
+  "timestamp": "2026-01-15T19:45:10.142686",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_1_002",
+      "agent_id": "claude_opus_4_5",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.105,
+        "recovery": 0.85,
+        "total": 36.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 3,
+            "diagnosis_turn": 3,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't have"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 4,
+            "tests_total": 5,
+            "weighted_score": 0.85,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_structure",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nType: <class 'dict'>\n\n--- Testing error handling ---\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResoluti",
+                "stderr": ""
+              },
+              {
+                "name": "correct_pattern",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nType: <class 'dict'>\n\n--- Testing error handling ---\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResoluti",
+                "stderr": ""
+              },
+              {
+                "name": "error_handling",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nType: <class 'dict'>\n\n--- Testing error handling ---\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResoluti",
+                "stderr": ""
+              },
+              {
+                "name": "handles_invalid_url",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nType: <class 'dict'>\n\n--- Testing error handling ---\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResoluti",
+                "stderr": ""
+              },
+              {
+                "name": "no_hallucinated_method",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": "",
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nType: <class 'dict'>\n\n--- Testing error handling ---\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResoluti",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 3,
+        "execution_time_seconds": 16.957579,
+        "timestamp": "2026-01-15T19:45:10.142534"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.105,
+    "avg_recovery": 0.85,
+    "avg_total": 36.1
+  }
+}

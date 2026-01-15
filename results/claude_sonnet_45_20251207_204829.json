@@ -1,0 +1,230 @@
+{
+  "agent_id": "claude_sonnet_45",
+  "timestamp": "2025-12-07T20:48:29.198469",
+  "num_tasks": 3,
+  "num_error_tasks": 2,
+  "num_negative_controls": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_2_001",
+      "agent_id": "claude_sonnet_45",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.455,
+        "recovery": 0.0,
+        "total": 9.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 3,
+            "diagnosis_turn": 5,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't exist",
+            "import error"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [],
+          "raw_score": 0.0,
+          "final_score": 0.0,
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output",
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 5,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:44:06.314913"
+      }
+    },
+    {
+      "task_id": "aver_hallucination_code_api_2_003",
+      "agent_id": "claude_sonnet_45",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.225,
+        "total": 9.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": 3,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "recovery_level": "unclear",
+          "criteria_met": [],
+          "reasoning": "Could not determine recovery success",
+          "cognitive_confidence": "low",
+          "cognitive_warning": "Invalid causal chain: Invalid causal chain: generic detection or no coherent process"
+        }
+      },
+      "metadata": {
+        "num_turns": 5,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:44:26.447439"
+      }
+    },
+    {
+      "task_id": "aver_negative_yaml_001",
+      "agent_id": "claude_sonnet_45",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": true,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 1.0,
+        "total": 100.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "false_positive": true,
+          "fp_signals": [
+            "not found",
+            "invalid"
+          ]
+        },
+        "diagnosis": {
+          "method": "negative_control",
+          "reasoning": "No error to diagnose"
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 3,
+            "tests_total": 3,
+            "weighted_score": 1.0,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "basic_yaml_parsing",
+                "passed": true,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "PASSED: basic_yaml_parsing\n",
+                "stderr": ""
+              },
+              {
+                "name": "file_not_found",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Error: File '/nonexistent/path.yaml' not found.\nPASSED: file_not_found\n",
+                "stderr": ""
+              },
+              {
+                "name": "uses_yaml_module",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "PASSED: uses_yaml_module\n",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          }
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 0.0,
+        "timestamp": "2025-12-07T20:45:02.564298"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.22749999999999998,
+    "avg_recovery": 0.11249999999999999,
+    "avg_error_score": 9.05,
+    "false_positive_rate": 1.0,
+    "negative_control_completion": 1.0
+  }
+}
