@@ -51,7 +51,7 @@ COMPOSE_PATH = "docker-compose.yml"
 A2A_SCENARIO_PATH = "a2a-scenario.toml"
 ENV_PATH = ".env.example"
 
-DEFAULT_PORT = 9009
+DEFAULT_PORT = 9000
 DEFAULT_ENV_VARS = {"PYTHONUNBUFFERED": "1"}
 
 COMPOSE_TEMPLATE = """# Auto-generated from scenario.toml
@@ -61,12 +61,9 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
-    command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url",
-              "http://green-agent:{green_port}"]
     environment:{green_env}
     healthcheck:
-      test: ["CMD", "curl", "-f",
-             "http://localhost:{green_port}/.well-known/agent-card.json"]
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -83,7 +80,6 @@ services:
     volumes:
       - ./a2a-scenario.toml:/app/scenario.toml
       - ./output:/app/output
-    command: ["scenario.toml", "output/results.json"]
     depends_on:{client_depends}
     networks:
       - agent-network
@@ -97,15 +93,7 @@ PARTICIPANT_TEMPLATE = """  {name}:
     image: {image}
     platform: linux/amd64
     container_name: {name}
-    command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url",
-              "http://{name}:{port}"]
     environment:{env}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-      start_period: 30s
     networks:
       - agent-network
 """
@@ -166,12 +154,21 @@ def format_env_vars(env_dict: dict[str, Any]) -> str:
     lines = [f"      - {key}={value}" for key, value in env_vars.items()]
     return "\n" + "\n".join(lines)
 
-def format_depends_on(services: list) -> str:
-    """Format depends_on section for docker-compose."""
+def format_depends_on(services: list, healthy_services: list = None) -> str:
+    """Format depends_on section for docker-compose.
+
+    Args:
+        services: List of service names
+        healthy_services: Services that have healthchecks (use service_healthy)
+    """
+    healthy_services = healthy_services or []
     lines = []
     for service in services:
         lines.append(f"      {service}:")
-        lines.append(f"        condition: service_healthy")
+        if service in healthy_services:
+            lines.append(f"        condition: service_healthy")
+        else:
+            lines.append(f"        condition: service_started")
     return "\n" + "\n".join(lines)
 
 def generate_docker_compose(scenario: dict[str, Any]) -> str:
@@ -199,7 +196,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
         green_env=format_env_vars(green.get("env", {})),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
-        client_depends=format_depends_on(all_services)
+        client_depends=format_depends_on(all_services, healthy_services=["green-agent"])
     )
 
 def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
