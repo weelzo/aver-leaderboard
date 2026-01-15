@@ -1,26 +1,10 @@
 [
   {
-    "name": "Claude Opus 4.5",
-    "query": "SELECT r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.agent_id = 'claude_opus_4_5' ORDER BY r.scores.total DESC"
-  },
-  {
-    "name": "Gemini 2.5 Pro",
-    "query": "SELECT r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.agent_id = 'gemini_2_5_pro' ORDER BY r.scores.total DESC"
-  },
-  {
-    "name": "Gemini 3 Pro",
-    "query": "SELECT r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.agent_id = 'gemini_3_pro' ORDER BY r.scores.total DESC"
-  },
-  {
-    "name": "Gemini 2.5 Flash",
-    "query": "SELECT r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.agent_id = 'gemini_2_5_flash' ORDER BY r.scores.total DESC"
-  },
-  {
-    "name": "GPT 5.2",
-    "query": "SELECT r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.agent_id = 'gpt_5_2' ORDER BY r.scores.total DESC"
-  },
-  {
     "name": "Overall Comparison",
-    "query": "SELECT r.agent_id AS \"Model\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.detection) * 100, 1) AS \"Avg Detection %\", ROUND(AVG(r.scores.diagnosis) * 100, 1) AS \"Avg Diagnosis %\", ROUND(AVG(r.scores.recovery) * 100, 1) AS \"Avg Recovery %\", ROUND(AVG(r.scores.total), 1) AS \"Avg Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY r.agent_id ORDER BY \"Avg Total\" DESC"
+    "query": "SELECT r.agent_id AS \"Model\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.detection) * 100, 1) AS \"Detection %\", ROUND(AVG(r.scores.diagnosis) * 100, 1) AS \"Diagnosis %\", ROUND(AVG(r.scores.recovery) * 100, 1) AS \"Recovery %\", ROUND(AVG(r.scores.total), 1) AS \"Avg Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY r.agent_id ORDER BY \"Avg Total\" DESC"
+  },
+  {
+    "name": "All Results",
+    "query": "SELECT r.agent_id AS \"Model\", r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 1) AS \"Detection %\", ROUND(r.scores.diagnosis * 100, 1) AS \"Diagnosis %\", ROUND(r.scores.recovery * 100, 1) AS \"Recovery %\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL ORDER BY r.scores.total DESC"
   }
 ]
