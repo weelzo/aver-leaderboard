@@ -6,22 +6,22 @@ env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}" }
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "claude_opus_4_5"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "anthropic/claude-opus-4-5" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "anthropic/claude-sonnet-4.5" }
 
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "gemini_2_5_pro"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-pro-preview-05-06" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-pro" }
 
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "gemini_3_pro"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-3-pro" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-3-pro-preview" }
 
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "gemini_2_5_flash"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-flash-preview-05-20" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-3-pro-preview" }
 
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
