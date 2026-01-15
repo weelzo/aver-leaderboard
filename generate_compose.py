@@ -64,7 +64,9 @@ services:
     platform: linux/amd64
     container_name: green-agent
     environment:
-      - AGENT_URL=http://green-agent:{green_port}{green_env}
+      - AGENT_URL=http://green-agent:{green_port}
+      - PARTICIPANT_URL=http://{participant_name}:{participant_port}
+      - PARTICIPANT_ID={participant_name}{green_env}
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/health')"]
       interval: 5s
@@ -193,9 +195,14 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
 
     all_services = ["green-agent"] + participant_names
 
+    # Get first participant for PARTICIPANT_URL (primary test target)
+    first_participant = participants[0]["name"] if participants else "baseline_agent"
+
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=GREEN_AGENT_PORT,
+        participant_name=first_participant,
+        participant_port=PARTICIPANT_PORT,
         green_env=format_env_vars(green.get("env", {})),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
