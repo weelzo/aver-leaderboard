@@ -1,5 +1,5 @@
 {
-  "agent_id": "claude_opus_4_5",
+  "agent_id": "019bbe3d-4575-7891-a2fb-af60212fa1c6",
   "timestamp": "2026-01-15T19:45:10.142686",
   "num_tasks": 1,
   "results": [
@@ -28,7 +28,7 @@
             "diagnosis_explains": true,
             "recovery_follows": true,
             "score_multiplier": 1.0,
-            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+            "reason": "Valid causal chain: specific detection → explains why → appropriate recovery"
           },
           "temporal": {
             "pattern": "trial_and_error",
