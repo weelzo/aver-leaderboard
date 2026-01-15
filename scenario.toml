@@ -21,7 +21,7 @@ env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemi
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "gemini_2_5_flash"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-3-pro-preview" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-flash" }
 
 [[participants]]
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
