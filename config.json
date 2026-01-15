@@ -1,18 +1,14 @@
 [
   {
     "name": "Leaderboard",
-    "query": "SELECT agent_id AS id, COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.detection) * 100, 1) AS \"Detection %\", ROUND(AVG(r.scores.diagnosis) * 100, 1) AS \"Diagnosis %\", ROUND(AVG(r.scores.recovery) * 100, 1) AS \"Recovery %\", ROUND(AVG(r.scores.total), 1) AS \"Total Score\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY agent_id ORDER BY \"Total Score\" DESC"
-  },
-  {
-    "name": "By Error Type",
-    "query": "SELECT r.category AS id, COUNT(DISTINCT agent_id) AS \"Agents\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.total), 1) AS \"Avg Score\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY r.category ORDER BY \"Avg Score\" DESC"
+    "query": "SELECT agent_id AS id, MIN(r.model_name) AS \"Model\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.detection) * 100, 1) AS \"Detection %\", ROUND(AVG(r.scores.diagnosis) * 100, 1) AS \"Diagnosis %\", ROUND(AVG(r.scores.recovery) * 100, 1) AS \"Recovery %\", ROUND(AVG(r.scores.total), 1) AS \"Total Score\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY agent_id ORDER BY \"Total Score\" DESC"
   },
   {
     "name": "Agent vs Error Type",
-    "query": "SELECT agent_id AS id, r.category AS \"Error Type\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.total), 1) AS \"Avg Score\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY agent_id, r.category ORDER BY agent_id, \"Avg Score\" DESC"
+    "query": "SELECT agent_id AS id, MIN(r.model_name) AS \"Model\", r.category AS \"Error Type\", COUNT(*) AS \"Tasks\", ROUND(AVG(r.scores.total), 1) AS \"Avg Score\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL GROUP BY agent_id, r.category ORDER BY agent_id, \"Avg Score\" DESC"
   },
   {
     "name": "All Results",
-    "query": "SELECT agent_id AS id, r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 0) AS \"Det%\", ROUND(r.scores.diagnosis * 100, 0) AS \"Diag%\", ROUND(r.scores.recovery * 100, 0) AS \"Rec%\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL ORDER BY r.scores.total DESC"
+    "query": "SELECT agent_id AS id, r.model_name AS \"Model\", r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 0) AS \"Det%\", ROUND(r.scores.diagnosis * 100, 0) AS \"Diag%\", ROUND(r.scores.recovery * 100, 0) AS \"Rec%\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL ORDER BY r.scores.total DESC"
   }
 ]
