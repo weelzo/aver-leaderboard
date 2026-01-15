@@ -63,7 +63,8 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
-    environment:{green_env}
+    environment:
+      - AGENT_URL=http://green-agent:{green_port}{green_env}
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/health')"]
       interval: 5s
