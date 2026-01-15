@@ -1,11 +1,11 @@
 [green_agent]
 # AVER Evaluator - Update with your AgentBeats ID after registration
-agentbeats_id = "YOUR_GREEN_AGENT_ID_HERE"
+agentbeats_id = "019bbe3d-4575-7891-a2fb-af60212fa1c6"
 env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}" }
 
 [[participants]]
 # Baseline Purple Agent - Update with your AgentBeats ID after registration
-agentbeats_id = "YOUR_PURPLE_AGENT_ID_HERE"
+agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "baseline_agent"
 env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "${AGENT_MODEL}" }
 
