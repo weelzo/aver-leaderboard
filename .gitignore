@@ -9,3 +9,7 @@
 
 # History (if using local history plugin)
 .history/
+
+# Generated files
+docker-compose.yml
+output/
