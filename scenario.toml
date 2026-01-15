@@ -4,10 +4,29 @@ agentbeats_id = "019bbe3d-4575-7891-a2fb-af60212fa1c6"
 env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}" }
 
 [[participants]]
-# Baseline Purple Agent - Update with your AgentBeats ID after registration
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
-name = "baseline_agent"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "${AGENT_MODEL}" }
+name = "claude_opus_4_5"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "anthropic/claude-opus-4-5" }
+
+[[participants]]
+agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+name = "gemini_2_5_pro"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-pro-preview-05-06" }
+
+[[participants]]
+agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+name = "gemini_3_pro"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-3-pro" }
+
+[[participants]]
+agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+name = "gemini_2_5_flash"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "google/gemini-2.5-flash-preview-05-20" }
+
+[[participants]]
+agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+name = "gpt_5_2"
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "openai/gpt-5.2" }
 
 [config]
 # AVER Benchmark configuration
