@@ -7,7 +7,7 @@ env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}" }
 # Baseline Purple Agent - Update with your AgentBeats ID after registration
 agentbeats_id = "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
 name = "baseline_agent"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "${AGENT_MODEL}" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "${AGENT_MODEL}", PORT = "9000" }
 
 [config]
 # AVER Benchmark configuration

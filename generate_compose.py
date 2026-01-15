@@ -63,11 +63,11 @@ services:
     container_name: green-agent
     environment:{green_env}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9000/health')"]
       interval: 5s
-      timeout: 3s
+      timeout: 5s
       retries: 10
-      start_period: 30s
+      start_period: 10s
     depends_on:{green_depends}
     networks:
       - agent-network
