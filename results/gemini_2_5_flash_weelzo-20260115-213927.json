@@ -1,0 +1,124 @@
+{
+  "agent_id": "gemini_2_5_flash",
+  "timestamp": "2026-01-15T21:39:21.743671",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_validation_bounds_1_024",
+      "agent_id": "gemini_2_5_flash",
+      "model_name": "google/gemini-2.5-flash",
+      "category": "validation",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.052,
+        "recovery": 0.45,
+        "total": 19.05
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "invalid"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 3,
+            "tests_total": 4,
+            "weighted_score": 0.6,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "All test cases passed!\nPASSED: function_exists\n",
+                "stderr": ""
+              },
+              {
+                "name": "inclusive_boundaries",
+                "passed": false,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpog1a851i.py\", line 26, in <module>\n    assert validate_age(0) == True, \"0 should be valid (inclusive)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 should be valid (inclusive)\n",
+                "stdout": "All test cases passed!\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpog1a851i.py\", line 26, in <module>\n    assert validate_age(0) == True, \"0 should be valid (inclusive)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 should be valid (inclusive)\n"
+              },
+              {
+                "name": "invalid_rejected",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "All test cases passed!\nPASSED: invalid_rejected\n",
+                "stderr": ""
+              },
+              {
+                "name": "no_exclusive",
+                "passed": true,
+                "weight": 0.2,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "All test cases passed!\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpeq591jw9.py\", line 32, in <module>\n    assert result_0 == True or result_120 == True, \"Should use inclusive (>=, <=), not exclusive (>, <)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Should use inclusive (>=, <=), not exclusive (>, <)\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "Invalid causal chain: Invalid causal chain: generic detection or no coherent process"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 3.908825,
+        "timestamp": "2026-01-15T21:39:21.743523"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0525,
+    "avg_recovery": 0.44999999999999996,
+    "avg_total": 19.05
+  }
+}

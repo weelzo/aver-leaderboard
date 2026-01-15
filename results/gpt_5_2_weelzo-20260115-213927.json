@@ -1,0 +1,86 @@
+{
+  "agent_id": "gpt_5_2",
+  "timestamp": "2026-01-15T21:39:26.147564",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_validation_bounds_1_024",
+      "agent_id": "gpt_5_2",
+      "model_name": "openai/gpt-5.2",
+      "category": "validation",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.0,
+        "total": 0.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": null,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": false,
+            "names_specific_error": true,
+            "explains_why_wrong": false,
+            "identifies_correct_approach": false,
+            "depth_score": 0.3,
+            "depth_level": "shallow"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "def validate_age",
+              "type": "success"
+            }
+          ],
+          "failure_criterion_found": "age < 120",
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output",
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Shallow diagnosis - agent detected error but didn't fully explain"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 4.402514,
+        "timestamp": "2026-01-15T21:39:26.147444"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.0,
+    "avg_total": 0.0
+  }
+}
