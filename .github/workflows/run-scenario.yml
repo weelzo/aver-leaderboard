@@ -94,26 +94,23 @@ jobs:
         run: |
           mkdir -p submissions results
           cp scenario.toml submissions/${{ steps.metadata.outputs.unique_name }}.toml
-          # Find and merge all result files from green-agent
-          RESULT_FILES=$(find output -name "*.json" ! -name "provenance.json" ! -name "results.json" 2>/dev/null | head -20)
-          if [ -n "$RESULT_FILES" ]; then
-            # Combine all result files into one
-            echo '{"results": [' > results/${{ steps.metadata.outputs.unique_name }}.json
-            first=true
-            for f in $RESULT_FILES; do
-              if [ "$first" = true ]; then
-                first=false
-              else
-                echo ',' >> results/${{ steps.metadata.outputs.unique_name }}.json
-              fi
-              cat "$f" >> results/${{ steps.metadata.outputs.unique_name }}.json
-            done
-            echo ']}' >> results/${{ steps.metadata.outputs.unique_name }}.json
-          else
-            # Fallback to agentbeats-client results
-            cp output/results.json results/${{ steps.metadata.outputs.unique_name }}.json
-          fi
           cp output/provenance.json submissions/${{ steps.metadata.outputs.unique_name }}.provenance.json
+
+          # Copy each agent's result file directly (one file per agent)
+          # Format: agent_name_YYYYMMDD_HHMMSS.json -> agent_name_submission.json
+          count=0
+          for f in output/*.json; do
+            if [[ -f "$f" && ! "$f" =~ (provenance|results)\.json$ ]]; then
+              # Extract agent name (everything before the timestamp)
+              basename=$(basename "$f" .json)
+              agent_name=$(echo "$basename" | sed 's/_[0-9]\{8\}_[0-9]\{6\}$//')
+              dest="results/${agent_name}_${{ steps.metadata.outputs.unique_name }}.json"
+              cp "$f" "$dest"
+              echo "Copied: $f -> $dest"
+              count=$((count + 1))
+            fi
+          done
+          echo "Total result files: $count"
 
       - name: Determine target repository
         id: target
