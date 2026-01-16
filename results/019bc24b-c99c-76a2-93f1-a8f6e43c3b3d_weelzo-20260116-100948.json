@@ -1,0 +1,134 @@
+{
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+  "timestamp": "2026-01-16T10:08:57.501099",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_validation_logic_3_008",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "validation",
+      "difficulty": 3,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.079,
+        "recovery": 0.9,
+        "total": 37.58
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.75,
+            "reason": "Weak causal chain: detected and recovered but diagnosis unclear"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 2,
+            "diagnosis_turn": null,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "invalid",
+            "expected"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 4,
+            "tests_total": 5,
+            "weighted_score": 0.9,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Testing password validation function:\n==================================================\n\u2713 Password: 'Abc123!@#$%0' -> True (expected: True)\n\u2713 Password: 'abc123!@#$%0' -> False (expected: False)\n\u2713 Password: 'ABC123!@#$%0' -> False (expected: False)\n\u2713 Password: 'Abcdef!@#$%' -> False (expected: False)\n\u2713 Password: 'Abc123456789' -> False (expected: False)\n\u2717 Password: 'Abc123!short' -> True (expected: False)\n\u2713 Password: 'Abc123!@#$%long' -> True (expected: True)\n\u2713 Password: 'Abc123!&test12' -> Fals",
+                "stderr": ""
+              },
+              {
+                "name": "basic_requirements",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Testing password validation function:\n==================================================\n\u2713 Password: 'Abc123!@#$%0' -> True (expected: True)\n\u2713 Password: 'abc123!@#$%0' -> False (expected: False)\n\u2713 Password: 'ABC123!@#$%0' -> False (expected: False)\n\u2713 Password: 'Abcdef!@#$%' -> False (expected: False)\n\u2713 Password: 'Abc123456789' -> False (expected: False)\n\u2717 Password: 'Abc123!short' -> True (expected: False)\n\u2713 Password: 'Abc123!@#$%long' -> True (expected: True)\n\u2713 Password: 'Abc123!&test12' -> Fals",
+                "stderr": ""
+              },
+              {
+                "name": "valid_password_accepted",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Testing password validation function:\n==================================================\n\u2713 Password: 'Abc123!@#$%0' -> True (expected: True)\n\u2713 Password: 'abc123!@#$%0' -> False (expected: False)\n\u2713 Password: 'ABC123!@#$%0' -> False (expected: False)\n\u2713 Password: 'Abcdef!@#$%' -> False (expected: False)\n\u2713 Password: 'Abc123456789' -> False (expected: False)\n\u2717 Password: 'Abc123!short' -> True (expected: False)\n\u2713 Password: 'Abc123!@#$%long' -> True (expected: True)\n\u2713 Password: 'Abc123!&test12' -> Fals",
+                "stderr": ""
+              },
+              {
+                "name": "handles_contradiction",
+                "passed": true,
+                "weight": 0.2,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Testing password validation function:\n==================================================\n\u2713 Password: 'Abc123!@#$%0' -> True (expected: True)\n\u2713 Password: 'abc123!@#$%0' -> False (expected: False)\n\u2713 Password: 'ABC123!@#$%0' -> False (expected: False)\n\u2713 Password: 'Abcdef!@#$%' -> False (expected: False)\n\u2713 Password: 'Abc123456789' -> False (expected: False)\n\u2717 Password: 'Abc123!short' -> True (expected: False)\n\u2713 Password: 'Abc123!@#$%long' -> True (expected: True)\n\u2713 Password: 'Abc123!&test12' -> Fals",
+                "stderr": ""
+              },
+              {
+                "name": "no_impossible_logic",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "negative",
+                "error": "",
+                "stdout": "Testing password validation function:\n==================================================\n\u2713 Password: 'Abc123!@#$%0' -> True (expected: True)\n\u2713 Password: 'abc123!@#$%0' -> False (expected: False)\n\u2713 Password: 'ABC123!@#$%0' -> False (expected: False)\n\u2713 Password: 'Abcdef!@#$%' -> False (expected: False)\n\u2713 Password: 'Abc123456789' -> False (expected: False)\n\u2717 Password: 'Abc123!short' -> True (expected: False)\n\u2713 Password: 'Abc123!@#$%long' -> True (expected: True)\n\u2713 Password: 'Abc123!&test12' -> Fals",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 3,
+        "execution_time_seconds": 34.43141,
+        "timestamp": "2026-01-16T10:08:57.500946"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.07875,
+    "avg_recovery": 0.9,
+    "avg_total": 37.575
+  }
+}
