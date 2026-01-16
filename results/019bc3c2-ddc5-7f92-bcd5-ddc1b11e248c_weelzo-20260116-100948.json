@@ -1,0 +1,82 @@
+{
+  "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+  "timestamp": "2026-01-16T10:09:35.003248",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_validation_logic_3_008",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "validation",
+      "difficulty": 3,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.0,
+        "total": 0.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": false,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": null,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": false,
+            "names_specific_error": false,
+            "explains_why_wrong": false,
+            "identifies_correct_approach": false,
+            "depth_score": 0.0,
+            "depth_level": "none"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [],
+          "raw_score": 0.0,
+          "final_score": 0.0,
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output",
+          "cognitive_confidence": "low",
+          "cognitive_warning": "Invalid causal chain: Invalid causal chain: generic detection or no coherent process"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 24.788387,
+        "timestamp": "2026-01-16T10:09:35.003109"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.0,
+    "avg_total": 0.0
+  }
+}
