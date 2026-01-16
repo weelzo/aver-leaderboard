@@ -1,0 +1,133 @@
+{
+  "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+  "timestamp": "2026-01-16T10:03:12.686074",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_2_003",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.341,
+        "recovery": 0.15,
+        "total": 12.82
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.75,
+            "reason": "Weak causal chain: detected and recovered but diagnosis unclear"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 2,
+            "diagnosis_turn": null,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't exist"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "basic_json_parsing",
+                "passed": false,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmph0oyh4dn.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n",
+                "stdout": "(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)\nTypeError: JSONDecoder.__init__() got an unexpected keyword argument 'auto_detect_encoding'\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmph0oyh4dn.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n"
+              },
+              {
+                "name": "nested_structure",
+                "passed": false,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpomqtty_h.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n",
+                "stdout": "(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)\nTypeError: JSONDecoder.__init__() got an unexpected keyword argument 'auto_detect_encoding'\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpomqtty_h.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n"
+              },
+              {
+                "name": "file_not_found_handling",
+                "passed": false,
+                "weight": 0.2,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpx_owu36h.py\", line 32, in <module>\n    result = read_json_file(\"/nonexistent/path/file.json\")\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n",
+                "stdout": "(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)\nTypeError: JSONDecoder.__init__() got an unexpected keyword argument 'auto_detect_encoding'\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpx_owu36h.py\", line 32, in <module>\n    result = read_json_file(\"/nonexistent/path/file.json\")\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n"
+              },
+              {
+                "name": "empty_json_handling",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpfsryh3m3.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n",
+                "stdout": "(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)\nTypeError: JSONDecoder.__init__() got an unexpected keyword argument 'auto_detect_encoding'\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpfsryh3m3.py\", line 42, in <module>\n    result = read_json_file(TEST_FILE)\n             ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n"
+              },
+              {
+                "name": "no_hallucinated_parameter",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)\nTypeError: JSONDecoder.__init__() got an unexpected keyword argument 'auto_detect_encoding'\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmp9ztnrvbt.py\", line 33, in <module>\n    source = inspect.getsource(read_json_file)\n                               ^^^^^^^^^^^^^^\nNameError: name 'read_json_file' is not defined\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 4,
+        "execution_time_seconds": 71.41512,
+        "timestamp": "2026-01-16T10:03:12.685924"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.34124999999999994,
+    "avg_recovery": 0.15,
+    "avg_total": 12.824999999999998
+  }
+}
