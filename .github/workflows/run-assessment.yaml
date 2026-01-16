@@ -1,11 +1,14 @@
-name: Update AVER Leaderboard
+name: Validate Results
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'results/**'
-  workflow_dispatch:  # Manual trigger
+  pull_request:
+    paths:
+      - 'results/**'
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -13,37 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Normalize agent_ids for leaderboard
-        run: |
-          # Replace non-UUID agent_ids with registered UUID for AgentBeats display
-          REGISTERED_ID="019bbe3d-4575-7891-a2fb-af60212fa1c6"
-
-          for f in results/*.json; do
-            if [ -f "$f" ]; then
-              # Check if agent_id is not already a UUID
-              current_id=$(python3 -c "import json; print(json.load(open('$f')).get('agent_id', ''))" 2>/dev/null || echo "")
-              if [ -n "$current_id" ] && ! echo "$current_id" | grep -qE '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'; then
-                echo "Normalizing agent_id in $f: $current_id -> $REGISTERED_ID"
-                python3 -c "
-import json
-with open('$f', 'r') as file:
-    data = json.load(file)
-data['agent_id'] = '$REGISTERED_ID'
-with open('$f', 'w') as file:
-    json.dump(data, file, indent=2)
-"
-              fi
-            fi
-          done
-
-      - name: Commit normalized results
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/*.json
-          git diff --staged --quiet || git commit -m "Normalize agent_ids for leaderboard display"
-          git push || echo "Nothing to push"
 
       - name: Validate JSON files
         run: |
@@ -59,7 +31,3 @@ with open('$f', 'w') as file:
           done
 
           echo "✓ All JSON files valid"
-
-  # Note: Actual assessments are run via AgentBeats platform
-  # Results are uploaded to results/ directory manually or via AgentBeats API
-  # See: https://agentbeats.dev/benchmarks/aver
