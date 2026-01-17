@@ -1,0 +1,143 @@
+{
+  "participants": {
+    "purple_agent": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+  },
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+  "timestamp": "2026-01-17T13:20:40.892394",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_1_002",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.35,
+        "diagnosis": 0.455,
+        "recovery": 0.85,
+        "total": 57.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 4,
+              "signal": "get_json() doesn't exist",
+              "text": "<json>\n{\n    \"tool\": \"respond\",\n    \"parameters\": {\n        \"message\": \"Here's a Python function to make HTTP GET requests and parse JSON responses:\\n\\n```python\\nimport requests\\nfrom requests.except"
+            }
+          ],
+          "implicit_matches": [],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 4,
+            "diagnosis_turn": 4,
+            "first_execution_turn": 3,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't exist",
+            "doesn't have"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 4,
+            "tests_total": 5,
+            "weighted_score": 0.85,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_structure",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\nType: <class 'dict'>\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(",
+                "stderr": ""
+              },
+              {
+                "name": "correct_pattern",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\nType: <class 'dict'>\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(",
+                "stderr": ""
+              },
+              {
+                "name": "error_handling",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\nType: <class 'dict'>\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(",
+                "stderr": ""
+              },
+              {
+                "name": "handles_invalid_url",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\nType: <class 'dict'>\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(",
+                "stderr": ""
+              },
+              {
+                "name": "no_hallucinated_method",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": "",
+                "stdout": "Result: {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\nType: <class 'dict'>\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 4,
+        "execution_time_seconds": 19.495268,
+        "timestamp": "2026-01-17T13:20:40.892235"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.35,
+    "avg_diagnosis": 0.45499999999999996,
+    "avg_recovery": 0.85,
+    "avg_total": 57.099999999999994
+  }
+}
