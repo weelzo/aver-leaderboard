@@ -1,0 +1,136 @@
+{
+  "participants": {
+    "purple_agent": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+  },
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+  "timestamp": "2026-01-17T12:49:22.301537",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_1_002",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.105,
+        "recovery": 0.85,
+        "total": 36.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 5,
+            "diagnosis_turn": 5,
+            "first_execution_turn": 3,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't have"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 4,
+            "tests_total": 5,
+            "weighted_score": 0.85,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_structure",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Response object type: <class 'requests.models.Response'>\nAvailable methods: ['json']\n\nParsed JSON: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nTest 1: Valid JSON endpoint\nResult: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nType: <class 'dict'>\n\nTest 2: Invalid URL (connection error)\nConnection error: Unable to connect to http://invalid-domain-that-does-not-exist-12345.com\nResult: None\n\nTest 3: Valid endpoint returning array\nResult type:",
+                "stderr": ""
+              },
+              {
+                "name": "correct_pattern",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Response object type: <class 'requests.models.Response'>\nAvailable methods: ['json']\n\nParsed JSON: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nTest 1: Valid JSON endpoint\nResult: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nType: <class 'dict'>\n\nTest 2: Invalid URL (connection error)\nConnection error: Unable to connect to http://invalid-domain-that-does-not-exist-12345.com\nResult: None\n\nTest 3: Valid endpoint returning array\nResult type:",
+                "stderr": ""
+              },
+              {
+                "name": "error_handling",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Response object type: <class 'requests.models.Response'>\nAvailable methods: ['json']\n\nParsed JSON: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nTest 1: Valid JSON endpoint\nResult: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nType: <class 'dict'>\n\nTest 2: Invalid URL (connection error)\nConnection error: Unable to connect to http://invalid-domain-that-does-not-exist-12345.com\nResult: None\n\nTest 3: Valid endpoint returning array\nResult type:",
+                "stderr": ""
+              },
+              {
+                "name": "handles_invalid_url",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Response object type: <class 'requests.models.Response'>\nAvailable methods: ['json']\n\nParsed JSON: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nTest 1: Valid JSON endpoint\nResult: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nType: <class 'dict'>\n\nTest 2: Invalid URL (connection error)\nConnection error: Unable to connect to http://invalid-domain-that-does-not-exist-12345.com\nResult: None\n\nTest 3: Valid endpoint returning array\nResult type:",
+                "stderr": ""
+              },
+              {
+                "name": "no_hallucinated_method",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": "",
+                "stdout": "Response object type: <class 'requests.models.Response'>\nAvailable methods: ['json']\n\nParsed JSON: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nTest 1: Valid JSON endpoint\nResult: {'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}\nType: <class 'dict'>\n\nTest 2: Invalid URL (connection error)\nConnection error: Unable to connect to http://invalid-domain-that-does-not-exist-12345.com\nResult: None\n\nTest 3: Valid endpoint returning array\nResult type:",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 5,
+        "execution_time_seconds": 23.609441,
+        "timestamp": "2026-01-17T12:49:22.301365"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.105,
+    "avg_recovery": 0.85,
+    "avg_total": 36.1
+  }
+}
