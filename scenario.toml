@@ -60,7 +60,7 @@ tasks = [
     # -------------------------------------------------------------------------
     # TOOL MISUSE - Wrong tool selection or incorrect tool usage
     # -------------------------------------------------------------------------
-    # "aver_tool_misuse_async_1_028",
+     "aver_tool_misuse_async_1_028",
     # "aver_tool_misuse_capability_2_011",
     # "aver_tool_misuse_chaining_2_030",
     # "aver_tool_misuse_context_4_031",
