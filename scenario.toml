@@ -48,7 +48,7 @@ tasks = [
     # VALIDATION - Incorrect calculations, formats, or logic errors
     # -------------------------------------------------------------------------
     # "aver_validation_algorithm_4_027",
-    # "aver_validation_bounds_1_024",
+     "aver_validation_bounds_1_024",
     # "aver_validation_distributed_4_038",
     # "aver_validation_format_2_006",
     # "aver_validation_logic_3_008",
