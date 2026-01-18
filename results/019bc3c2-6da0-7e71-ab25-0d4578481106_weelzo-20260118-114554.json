@@ -1,0 +1,96 @@
+{
+  "participants": {
+    "purple_agent": "019bc3c2-6da0-7e71-ab25-0d4578481106"
+  },
+  "agent_id": "019bc3c2-6da0-7e71-ab25-0d4578481106",
+  "timestamp": "2026-01-18T11:45:53.012783",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_tool_misuse_async_1_028",
+      "agent_id": "019bc3c2-6da0-7e71-ab25-0d4578481106",
+      "model_name": "openai/gpt-5.2",
+      "category": "tool_misuse",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.7,
+        "diagnosis": 0.0,
+        "recovery": 0.5,
+        "total": 48.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 1,
+              "signal": "concurrent",
+              "text": "<json>\n{\n  \"tool\": \"http_request_async\",\n  \"parameters\": {\n    \"method\": \"GET\",\n    \"url\": \"https://api.example.com/users\",\n    \"headers\": {\n      \"Accept\": \"application/json\"\n    }\n  },\n  \"reasoning\""
+            }
+          ],
+          "implicit_matches": [],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "ideal",
+            "detection_turn": 1,
+            "diagnosis_turn": 2,
+            "first_execution_turn": 3,
+            "multiplier": 1.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "http_request_async",
+              "type": "success"
+            }
+          ],
+          "raw_score": 0.5,
+          "final_score": 0.5,
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output",
+          "cognitive_confidence": "high",
+          "cognitive_warning": null
+        }
+      },
+      "metadata": {
+        "num_turns": 3,
+        "execution_time_seconds": 31.907139,
+        "timestamp": "2026-01-18T11:45:53.012662"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.7,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.5,
+    "avg_total": 48.0
+  }
+}
