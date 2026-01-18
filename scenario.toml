@@ -83,7 +83,7 @@ tasks = [
     # -------------------------------------------------------------------------
     # ADVERSARIAL - Ambiguous, conflicting, or edge-case requirements
     # -------------------------------------------------------------------------
-    # "aver_adversarial_ambiguous_2_018",
+     "aver_adversarial_ambiguous_2_018",
     # "aver_adversarial_chain_3_035",
     # "aver_adversarial_compound_4_040",
     # "aver_adversarial_edge_case_3_020",
