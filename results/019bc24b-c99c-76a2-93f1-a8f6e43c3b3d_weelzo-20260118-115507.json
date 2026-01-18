@@ -1,0 +1,134 @@
+{
+  "participants": {
+    "purple_agent": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+  },
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+  "timestamp": "2026-01-18T11:54:30.213011",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_context_constraint_2_013",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "context_loss",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.112,
+        "total": 4.5
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": null,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": false,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmp9fwbp03s.py\", line 59, in <module>\n    assert callable(generate_password), \"generate_password must be callable\"\n                    ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n",
+                "stdout": "Password 1: u3BEBa9]lh]qE]wf (length: 16)\nPassword 2: U&LfQrYBM28+~c\"- (length: 16)\nPassword 3: &\\c5LA[Sjk6gz=]< (length: 16)\nPassword 4: Tz!B4A'Wc{5If%B` (length: 16)\nPassword 5: P8Vl\"UeQ=)uZq(+e (length: 16)\n\nTest password: `]2&d5wpVIg1Xa_U\nHas uppercase: True\nHas lowercase: True\nHas digits: True\nHas special chars: True\nLength: 16\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmp9fwbp03s.py\", line 59, in <module>\n    assert callable(generate_password), \"generate_password must be callable\"\n                    ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n"
+              },
+              {
+                "name": "uses_secrets",
+                "passed": false,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmp119c7jbc.py\", line 60, in <module>\n    source = inspect.getsource(generate_password)\n                               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n",
+                "stdout": "Password 1: [,qCe\"A*Rm]Y+1bF (length: 16)\nPassword 2: SYoUro2?P/W.Xhg4 (length: 16)\nPassword 3: #oN!l6\"<5YLcMv-o (length: 16)\nPassword 4: hG+H]CH>17\"zT^pT (length: 16)\nPassword 5: invKNecF|1ANVF{@ (length: 16)\n\nTest password: V>\\8TR8b*JsPt=<9\nHas uppercase: True\nHas lowercase: True\nHas digits: True\nHas special chars: True\nLength: 16\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmp119c7jbc.py\", line 60, in <module>\n    source = inspect.getsource(generate_password)\n                               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n"
+              },
+              {
+                "name": "correct_length",
+                "passed": false,
+                "weight": 0.2,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpc61oro7q.py\", line 59, in <module>\n    password = generate_password()\n               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n",
+                "stdout": "Password 1: 3Sn92X:sMI%^cdDC (length: 16)\nPassword 2: @=;Bx2ZwHm7'VG!> (length: 16)\nPassword 3: :b^jTnA5@:#h=SU| (length: 16)\nPassword 4: $6'8j\\zAg17o\\2oD (length: 16)\nPassword 5: _UQ\"Y@c`<6YoBI$/ (length: 16)\n\nTest password: 1[)3LI'Zb$%%FANm\nHas uppercase: True\nHas lowercase: True\nHas digits: True\nHas special chars: True\nLength: 16\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpc61oro7q.py\", line 59, in <module>\n    password = generate_password()\n               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n"
+              },
+              {
+                "name": "char_requirements",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmparnvu1xa.py\", line 60, in <module>\n    password = generate_password()\n               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n",
+                "stdout": "Password 1: (:,y)X7[?O%ME9^~ (length: 16)\nPassword 2: `{s1(A|Zv^j[$Bu# (length: 16)\nPassword 3: oCzcDc-vy6Z5-czs (length: 16)\nPassword 4: 4)^'*^l4^C8exQiX (length: 16)\nPassword 5: 0O?'Kl2x%aVfZR\"= (length: 16)\n\nTest password: ?MXU0DCOMW6`d7@]\nHas uppercase: True\nHas lowercase: True\nHas digits: True\nHas special chars: True\nLength: 16\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmparnvu1xa.py\", line 60, in <module>\n    password = generate_password()\n               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n"
+              },
+              {
+                "name": "no_random_module",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "Password 1: vC4ubY(5RH#gXmk@ (length: 16)\nPassword 2: ZJtlH9U\"sM9DN@v, (length: 16)\nPassword 3: LUd}.Z\"(1D!Ja1H\" (length: 16)\nPassword 4: 4<=BV?x)(WsfZ9jt (length: 16)\nPassword 5: @0fRB{dQ0og}AMl{ (length: 16)\n\nTest password: 9264mrMb\"X,WM0<V\nHas uppercase: True\nHas lowercase: True\nHas digits: True\nHas special chars: True\nLength: 16\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmphxhp_cie.py\", line 60, in <module>\n    source = inspect.getsource(generate_password)\n                               ^^^^^^^^^^^^^^^^^\nNameError: name 'generate_password' is not defined. Did you mean: 'generate_random_password'?\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "Invalid causal chain: Invalid causal chain: generic detection or no coherent process"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 17.580582,
+        "timestamp": "2026-01-18T11:54:30.212849"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.11249999999999999,
+    "avg_total": 4.5
+  }
+}

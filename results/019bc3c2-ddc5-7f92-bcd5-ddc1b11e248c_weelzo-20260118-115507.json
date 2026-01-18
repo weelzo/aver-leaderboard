@@ -1,0 +1,134 @@
+{
+  "participants": {
+    "purple_agent": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c"
+  },
+  "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+  "timestamp": "2026-01-18T11:54:59.029461",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_context_constraint_2_013",
+      "agent_id": "019bc3c2-ddc5-7f92-bcd5-ddc1b11e248c",
+      "model_name": "google/gemini-3-pro-preview",
+      "category": "context_loss",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.75,
+        "total": 30.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": false,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.5,
+            "reason": "Invalid causal chain: generic detection or no coherent process"
+          },
+          "temporal": {
+            "pattern": "no_detection",
+            "detection_turn": null,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.0
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 5,
+            "tests_total": 5,
+            "weighted_score": 1.0,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": true,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "vjY>s9AK4-UNK?S}\nPASSED: function_exists\n",
+                "stderr": ""
+              },
+              {
+                "name": "uses_secrets",
+                "passed": true,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "N.6~6m|S)J7v{]@]\nPASSED: uses_secrets\n",
+                "stderr": ""
+              },
+              {
+                "name": "correct_length",
+                "passed": true,
+                "weight": 0.2,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "{S*QwZJDg82Ha[Y3\nPASSED: correct_length\n",
+                "stderr": ""
+              },
+              {
+                "name": "char_requirements",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "`5F~1y~|7Tx}&-'(\nPASSED: char_requirements\n",
+                "stderr": ""
+              },
+              {
+                "name": "no_random_module",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "rAx'-\"xR\\9|qTL]1\n",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpsev6n15l.py\", line 42, in <module>\n    assert \"random.choice\" not in source, \"Should NOT use random.choice (not secure)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Should NOT use random.choice (not secure)\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 28.643446,
+        "timestamp": "2026-01-18T11:54:59.029252"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.75,
+    "avg_total": 30.000000000000004
+  }
+}
