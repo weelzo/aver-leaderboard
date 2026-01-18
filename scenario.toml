@@ -74,7 +74,7 @@ tasks = [
     # CONTEXT LOSS - Forgetting constraints, requirements, or state
     # -------------------------------------------------------------------------
     # "aver_context_consistency_3_016",
-    # "aver_context_constraint_2_013",
+     "aver_context_constraint_2_013",
     # "aver_context_drift_2_014",
     # "aver_context_security_4_033",
     # "aver_context_state_3_015",
