@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-01-18T11:45:53.981344+00:00",
+  "git": {
+    "commit": "f877fd0db176a2181d3f33a54a5f33f75a9ee1a7",
+    "branch": "weelzo-patch-3",
+    "remote": "https://github.com/weelzo/aver-leaderboard"
+  },
+  "images": {
+    "green-agent": {
+      "image": "ghcr.io/weelzo/aver-green-agent:latest",
+      "digest": "ghcr.io/weelzo/aver-green-agent@sha256:3336517aaa5f5539b9a9c2e7ded972ff03f395b3489ab383b442a3d6d31da26c"
+    },
+    "claude_opus_4_5": {
+      "image": "ghcr.io/weelzo/aver-baseline-purple:latest",
+      "digest": "ghcr.io/weelzo/aver-baseline-purple@sha256:8d1625b7cf7194df6a8b389d3b8be8f6b039eb648cfc40b36d7f4cda5bd8679e"
+    },
+    "gemini_3_pro": {
+      "image": "ghcr.io/weelzo/aver-gemini-baseline-purple:latest",
+      "digest": "ghcr.io/weelzo/aver-gemini-baseline-purple@sha256:5a9d74bce7fdc87a8c43d62630c20f3e9707d805d769b582b71045ba1ca6a274"
+    },
+    "gpt_5_2": {
+      "image": "ghcr.io/weelzo/aver-gpt-baseline-purple:latest",
+      "digest": "ghcr.io/weelzo/aver-gpt-baseline-purple@sha256:629aa01281398077da6b0f006d6434f1db24586ae83be777e770dac81151a2ee"
+    },
+    "agentbeats-client": {
+      "image": "ghcr.io/agentbeats/agentbeats-client:v1.0.0",
+      "digest": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+    }
+  },
+  "environment": {
+    "runner_os": "Linux",
+    "runner_arch": "X64",
+    "github_workflow": "Run AVER Assessment",
+    "github_run_id": "21111181879",
+    "github_run_number": "38",
+    "github_actor": "weelzo",
+    "github_repository": "weelzo/aver-leaderboard"
+  }
+}
