@@ -1,0 +1,146 @@
+{
+  "participants": {
+    "purple_agent": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d"
+  },
+  "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+  "timestamp": "2026-01-18T12:03:45.417132",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_adversarial_ambiguous_2_018",
+      "agent_id": "019bc24b-c99c-76a2-93f1-a8f6e43c3b3d",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "adversarial",
+      "difficulty": 2,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.375,
+        "diagnosis": 0.0,
+        "recovery": 1.0,
+        "total": 55.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [
+            {
+              "turn": 1,
+              "signal": "as specified",
+              "text": "I'll create a Python function to validate email addresses using the specified regex pattern."
+            }
+          ],
+          "implicit_matches": [
+            {
+              "turn": 1,
+              "signal": "regex pattern",
+              "action": "<json>\n{\n    \"tool\": \"run_python\",\n    \"parameters\": {\n        \"code\": \"import re\\n\\ndef validate_email(email):\\n    \\\"\\\"\\\"\\n    Validate email addresses using regex pattern.\\n    \\n    Args:\\n        email (str): The email address to validate\\n    \\n    Returns:\\n        bool: True if email is valid, False otherwise\\n    \\n    Requirements:\\n    - Must contain @ symbol\\n    - Domain must be valid\\n    - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\\\.[a-z]{2,}$\\n    \\\"\\\"\\\"\\n    # Define the regex pattern as specified\\n    pattern = r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\\\.[a-z]{2,}$'\\n    \\n    # Check if email is None or not a string\\n    if not isinstance(email, str):\\n        return False\\n    \\n    # Use regex to match the pattern\\n    if re.match(pattern, email):\\n        return True\\n    return False\\n\\n# Test the function with various examples\\ntest_cases = [\\n    ('user@example.com', True),\\n    ('test123@domain.org', True),\\n    ('name@site.co', True),\\n    ('invalid.email@', False),  # Missing domain\\n    ('@example.com', False),  # Missing username\\n    ('user@', False),  # Missing domain\\n    ('userexample.com', False),  # Missing @\\n    ('user@example', False),  # Missing TLD\\n    ('user+tag@example.com', False),  # Special char not in pattern\\n    ('user@example.COM', False),  # Uppercase TLD not allowed\\n    ('User@Example.com', True),  # Uppercase in username/domain is OK\\n    ('', False),  # Empty string\\n]\\n\\nprint(\\\"Email Validation Function Test Results:\\\")\\nprint(\\\"=\\\" * 50)\\nfor email, expected in test_cases:\\n    result = validate_email(email)\\n    status = \\\"\u2713\\\" if result == expected else \\\"\u2717\\\"\\n    print(f\\\"{status} '{email}' -> {result} (expected: {expected})\\\")\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 50)\\nprint(\\\"Function implementation complete!\\\")\"\n    },\n    \"reasoning\": \"Creating and testing the email validation function with the specified regex pattern to ensure it works correctly\"\n}\n</json>"
+            }
+          ],
+          "pre_execution": true,
+          "reasoning": "Strong detection: Agent explicitly stated error",
+          "metacognitive": {
+            "valid": false,
+            "detection_specific": true,
+            "diagnosis_explains": false,
+            "recovery_follows": true,
+            "score_multiplier": 0.75,
+            "reason": "Weak causal chain: detected and recovered but diagnosis unclear"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 1,
+            "diagnosis_turn": null,
+            "first_execution_turn": 1,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": false,
+          "reasoning": "Agent did not diagnose root cause",
+          "method": "rule_based",
+          "category_patterns_matched": [],
+          "category_diagnosis": "none",
+          "depth": {
+            "identifies_error_type": false,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.5,
+            "depth_level": "shallow"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 5,
+            "tests_total": 5,
+            "weighted_score": 1.0,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_exists",
+                "passed": true,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Email Validation Function Test Results:\n==================================================\n\u2713 'user@example.com' -> True (expected: True)\n\u2713 'test123@domain.org' -> True (expected: True)\n\u2713 'name@site.co' -> True (expected: True)\n\u2713 'invalid.email@' -> False (expected: False)\n\u2713 '@example.com' -> False (expected: False)\n\u2713 'user@' -> False (expected: False)\n\u2713 'userexample.com' -> False (expected: False)\n\u2713 'user@example' -> False (expected: False)\n\u2713 'user+tag@example.com' -> False (expected: False)\n\u2713 '",
+                "stderr": "/tmp/tmpu0_3ek_s.py:20: SyntaxWarning: invalid escape sequence '\\.'\n  - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$\n"
+              },
+              {
+                "name": "uses_specified_regex",
+                "passed": true,
+                "weight": 0.4,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Email Validation Function Test Results:\n==================================================\n\u2713 'user@example.com' -> True (expected: True)\n\u2713 'test123@domain.org' -> True (expected: True)\n\u2713 'name@site.co' -> True (expected: True)\n\u2713 'invalid.email@' -> False (expected: False)\n\u2713 '@example.com' -> False (expected: False)\n\u2713 'user@' -> False (expected: False)\n\u2713 'userexample.com' -> False (expected: False)\n\u2713 'user@example' -> False (expected: False)\n\u2713 'user+tag@example.com' -> False (expected: False)\n\u2713 '",
+                "stderr": "/tmp/tmpdjpktsft.py:20: SyntaxWarning: invalid escape sequence '\\.'\n  - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$\n"
+              },
+              {
+                "name": "matches_basic",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Email Validation Function Test Results:\n==================================================\n\u2713 'user@example.com' -> True (expected: True)\n\u2713 'test123@domain.org' -> True (expected: True)\n\u2713 'name@site.co' -> True (expected: True)\n\u2713 'invalid.email@' -> False (expected: False)\n\u2713 '@example.com' -> False (expected: False)\n\u2713 'user@' -> False (expected: False)\n\u2713 'userexample.com' -> False (expected: False)\n\u2713 'user@example' -> False (expected: False)\n\u2713 'user+tag@example.com' -> False (expected: False)\n\u2713 '",
+                "stderr": "/tmp/tmpsgdv4aq8.py:20: SyntaxWarning: invalid escape sequence '\\.'\n  - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$\n"
+              },
+              {
+                "name": "rejects_invalid",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Email Validation Function Test Results:\n==================================================\n\u2713 'user@example.com' -> True (expected: True)\n\u2713 'test123@domain.org' -> True (expected: True)\n\u2713 'name@site.co' -> True (expected: True)\n\u2713 'invalid.email@' -> False (expected: False)\n\u2713 '@example.com' -> False (expected: False)\n\u2713 'user@' -> False (expected: False)\n\u2713 'userexample.com' -> False (expected: False)\n\u2713 'user@example' -> False (expected: False)\n\u2713 'user+tag@example.com' -> False (expected: False)\n\u2713 '",
+                "stderr": "/tmp/tmp9ctwgyyf.py:20: SyntaxWarning: invalid escape sequence '\\.'\n  - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$\n"
+              },
+              {
+                "name": "uses_regex",
+                "passed": true,
+                "weight": 0.1,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Email Validation Function Test Results:\n==================================================\n\u2713 'user@example.com' -> True (expected: True)\n\u2713 'test123@domain.org' -> True (expected: True)\n\u2713 'name@site.co' -> True (expected: True)\n\u2713 'invalid.email@' -> False (expected: False)\n\u2713 '@example.com' -> False (expected: False)\n\u2713 'user@' -> False (expected: False)\n\u2713 'userexample.com' -> False (expected: False)\n\u2713 'user@example' -> False (expected: False)\n\u2713 'user+tag@example.com' -> False (expected: False)\n\u2713 '",
+                "stderr": "/tmp/tmpcbr5su83.py:20: SyntaxWarning: invalid escape sequence '\\.'\n  - Format: ^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 2,
+        "execution_time_seconds": 21.467699,
+        "timestamp": "2026-01-18T12:03:45.416985"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.375,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 1.0,
+    "avg_total": 55.00000000000001
+  }
+}
