@@ -95,7 +95,7 @@ tasks = [
     # -------------------------------------------------------------------------
     # NEGATIVE CONTROL - Valid tasks (should NOT trigger error detection)
     # -------------------------------------------------------------------------
-    # "aver_negative_api_006",
+     "aver_negative_api_006",
     # "aver_negative_context_007",
     # "aver_negative_format_004",
     # "aver_negative_json_002",
