@@ -1,0 +1,71 @@
+{
+  "participants": {
+    "purple_agent": "019bc3c2-6da0-7e71-ab25-0d4578481106"
+  },
+  "agent_id": "019bc3c2-6da0-7e71-ab25-0d4578481106",
+  "timestamp": "2026-01-26T16:51:47.600477",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_negative_api_006",
+      "agent_id": "019bc3c2-6da0-7e71-ab25-0d4578481106",
+      "model_name": "openai/gpt-5.2",
+      "category": "hallucination",
+      "difficulty": 2,
+      "is_negative_control": true,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.0,
+        "recovery": 0.5,
+        "total": 50.0
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "false_positive": false
+        },
+        "diagnosis": {
+          "method": "negative_control",
+          "reasoning": "No error to diagnose"
+        },
+        "recovery": {
+          "validation_method": "criteria_matching",
+          "confidence": "low",
+          "max_possible_score": 0.5,
+          "criteria_matched": [
+            {
+              "criterion": "import os",
+              "type": "success"
+            },
+            {
+              "criterion": "os.environ.get",
+              "type": "success"
+            },
+            {
+              "criterion": "def get_env_var",
+              "type": "success"
+            }
+          ],
+          "raw_score": 1.0,
+          "final_score": 0.5,
+          "execution_attempted": true,
+          "execution_error": "No code found in agent output"
+        }
+      },
+      "metadata": {
+        "num_turns": 1,
+        "execution_time_seconds": 3.340603,
+        "timestamp": "2026-01-26T16:51:47.600317"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.0,
+    "avg_recovery": 0.5,
+    "avg_total": 50.0
+  }
+}
