@@ -9,6 +9,6 @@
   },
   {
     "name": "All Results",
-    "query": "SELECT agent_id AS id, r.model_name AS \"Model\", r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 0) AS \"Det%\", ROUND(r.scores.diagnosis * 100, 0) AS \"Diag%\", ROUND(r.scores.recovery * 100, 0) AS \"Rec%\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL ORDER BY r.scores.total DESC"
+    "query": "SELECT agent_id AS id, r.difficulty AS \"Difficulty\", r.task_id AS \"Task\", r.category AS \"Category\", ROUND(r.scores.detection * 100, 0) AS \"Det%\", ROUND(r.scores.diagnosis * 100, 0) AS \"Diag%\", ROUND(r.scores.recovery * 100, 0) AS \"Rec%\", ROUND(r.scores.total, 1) AS \"Total\" FROM results CROSS JOIN UNNEST(results.results) AS t(r) WHERE r.scores.total IS NOT NULL ORDER BY r.scores.total DESC"
   }
 ]
