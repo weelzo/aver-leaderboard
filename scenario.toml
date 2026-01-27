@@ -62,7 +62,7 @@ tasks = [
     # -------------------------------------------------------------------------
     # "aver_tool_misuse_async_1_028",
     # "aver_tool_misuse_capability_2_011",
-    # "aver_tool_misuse_chaining_2_030",
+     "aver_tool_misuse_chaining_2_030",
     # "aver_tool_misuse_context_4_031",
     # "aver_tool_misuse_params_2_010",
     # "aver_tool_misuse_return_2_029",
