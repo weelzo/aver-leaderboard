@@ -1,0 +1,136 @@
+{
+  "participants": {
+    "purple_agent": "019c1660-6bd2-75f0-bd28-8f5452d81508"
+  },
+  "agent_id": "019c1660-6bd2-75f0-bd28-8f5452d81508",
+  "timestamp": "2026-01-31T23:40:53.573381",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_framework_3_004",
+      "agent_id": "019c1660-6bd2-75f0-bd28-8f5452d81508",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 3,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.0,
+        "diagnosis": 0.455,
+        "recovery": 0.15,
+        "total": 15.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [],
+          "pre_execution": false,
+          "reasoning": "No detection: Agent did not notice error",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 2,
+            "diagnosis_turn": null,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't have"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 1,
+            "tests_total": 5,
+            "weighted_score": 0.15,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "flask_app_defined",
+                "passed": false,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpfc50fi_0.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpfc50fi_0.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n"
+              },
+              {
+                "name": "post_route_exists",
+                "passed": false,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpx87efw7y.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpx87efw7y.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n"
+              },
+              {
+                "name": "manual_validation",
+                "passed": false,
+                "weight": 0.2,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpiuyphcfw.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpiuyphcfw.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n"
+              },
+              {
+                "name": "json_response",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": "Traceback (most recent call last):\n  File \"/tmp/tmpknjm9ud3.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n",
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmpknjm9ud3.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n"
+              },
+              {
+                "name": "no_auto_validate",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": null,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/tmp/tmp22tdttmw.py\", line 5, in <module>\n    from flask import Flask, request, jsonify\nModuleNotFoundError: No module named 'flask'\n"
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "medium",
+          "cognitive_warning": "Trial-and-error pattern detected - not genuine pre-detection"
+        }
+      },
+      "metadata": {
+        "num_turns": 4,
+        "execution_time_seconds": 144.827204,
+        "timestamp": "2026-01-31T23:40:53.573228"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.0,
+    "avg_diagnosis": 0.45499999999999996,
+    "avg_recovery": 0.15,
+    "avg_total": 15.1
+  }
+}
