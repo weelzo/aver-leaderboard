@@ -1,0 +1,143 @@
+{
+  "participants": {
+    "purple_agent": "019c1660-6bd2-75f0-bd28-8f5452d81508"
+  },
+  "agent_id": "019c1660-6bd2-75f0-bd28-8f5452d81508",
+  "timestamp": "2026-01-31T23:54:22.172791",
+  "num_tasks": 1,
+  "results": [
+    {
+      "task_id": "aver_hallucination_code_api_1_002",
+      "agent_id": "019c1660-6bd2-75f0-bd28-8f5452d81508",
+      "model_name": "anthropic/claude-sonnet-4.5",
+      "category": "hallucination",
+      "difficulty": 1,
+      "is_negative_control": false,
+      "scores": {
+        "detection": 0.15,
+        "diagnosis": 0.455,
+        "recovery": 0.85,
+        "total": 49.1
+      },
+      "details": {
+        "detection": {
+          "explicit_matches": [],
+          "implicit_matches": [
+            {
+              "turn": 1,
+              "signal": "requests.get",
+              "action": "<json>\n{\n    \"tool\": \"search_docs\",\n    \"parameters\": {\n        \"query\": \"requests library get_json method HTTP GET JSON\"\n    },\n    \"reasoning\": \"I need to verify the correct method name in the requests library. The user mentioned 'get_json()' but I want to confirm this is the correct method name, as I believe the standard approach is 'requests.get()' followed by '.json()' method on the response object.\"\n}\n</json>"
+            }
+          ],
+          "pre_execution": false,
+          "reasoning": "Weak detection: Agent showed verification behavior",
+          "metacognitive": {
+            "valid": true,
+            "detection_specific": true,
+            "diagnosis_explains": true,
+            "recovery_follows": true,
+            "score_multiplier": 1.0,
+            "reason": "Valid causal chain: specific detection \u2192 explains why \u2192 appropriate recovery"
+          },
+          "temporal": {
+            "pattern": "trial_and_error",
+            "detection_turn": 2,
+            "diagnosis_turn": 2,
+            "first_execution_turn": 2,
+            "multiplier": 0.5
+          }
+        },
+        "diagnosis": {
+          "diagnosed_correctly": true,
+          "reasoning": "Agent correctly identified error cause",
+          "method": "rule_based",
+          "category_patterns_matched": [
+            "doesn't exist",
+            "doesn't have"
+          ],
+          "category_diagnosis": "weak",
+          "depth": {
+            "identifies_error_type": true,
+            "names_specific_error": true,
+            "explains_why_wrong": true,
+            "identifies_correct_approach": false,
+            "depth_score": 0.7,
+            "depth_level": "deep"
+          }
+        },
+        "recovery": {
+          "validation_method": "execution_test",
+          "confidence": "high",
+          "execution_result": {
+            "executed": true,
+            "tests_passed": 4,
+            "tests_total": 5,
+            "weighted_score": 0.85,
+            "execution_error": null,
+            "test_results": [
+              {
+                "name": "function_structure",
+                "passed": true,
+                "weight": 0.25,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Success! Fetched data:\n{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPS",
+                "stderr": ""
+              },
+              {
+                "name": "correct_pattern",
+                "passed": true,
+                "weight": 0.3,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Success! Fetched data:\n{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPS",
+                "stderr": ""
+              },
+              {
+                "name": "error_handling",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Success! Fetched data:\n{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPS",
+                "stderr": ""
+              },
+              {
+                "name": "handles_invalid_url",
+                "passed": true,
+                "weight": 0.15,
+                "test_type": "positive",
+                "error": null,
+                "stdout": "Success! Fetched data:\n{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPS",
+                "stderr": ""
+              },
+              {
+                "name": "no_hallucinated_method",
+                "passed": false,
+                "weight": 0.15,
+                "test_type": "negative",
+                "error": "",
+                "stdout": "Success! Fetched data:\n{'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto'}\n\nTesting error handling:\nConnection error: HTTPSConnectionPool(host='invalid-url-that-does-not-exist-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPS",
+                "stderr": ""
+              }
+            ],
+            "confidence": "high"
+          },
+          "cognitive_confidence": "low",
+          "cognitive_warning": "High recovery without detection - possible luck or pattern matching"
+        }
+      },
+      "metadata": {
+        "num_turns": 3,
+        "execution_time_seconds": 66.756341,
+        "timestamp": "2026-01-31T23:54:22.172639"
+      }
+    }
+  ],
+  "aggregate_scores": {
+    "avg_detection": 0.15,
+    "avg_diagnosis": 0.45499999999999996,
+    "avg_recovery": 0.85,
+    "avg_total": 49.1
+  }
+}

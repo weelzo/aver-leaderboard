@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-01-31T23:54:23.059710+00:00",
+  "git": {
+    "commit": "039645afebdd523c77d5988600aee21139d04064",
+    "branch": "weelzo-patch-11",
+    "remote": "https://github.com/weelzo/aver-leaderboard"
+  },
+  "images": {
+    "green-agent": {
+      "image": "ghcr.io/weelzo/aver-green-agent:latest",
+      "digest": "ghcr.io/weelzo/aver-green-agent@sha256:83dfcc9e3b3ed2db53eee755c53c4c9bcd195e23a6d61607b1096266f8c1863b"
+    },
+    "claude_opus_4_5": {
+      "image": "ghcr.io/weelzo/aver-claude-purple-metacognitive:latest",
+      "digest": "ghcr.io/weelzo/aver-claude-purple-metacognitive@sha256:00ea81aa2691835525eacb58e4765eabd7b162226b338dedf86f0c0ad56969d7"
+    },
+    "agentbeats-client": {
+      "image": "ghcr.io/agentbeats/agentbeats-client:v1.0.0",
+      "digest": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+    }
+  },
+  "environment": {
+    "runner_os": "Linux",
+    "runner_arch": "X64",
+    "github_workflow": "Run AVER Assessment",
+    "github_run_id": "21552972289",
+    "github_run_number": "49",
+    "github_actor": "weelzo",
+    "github_repository": "weelzo/aver-leaderboard"
+  }
+}
