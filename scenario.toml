@@ -22,7 +22,7 @@ env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "openai/gpt-
 [[participants]]
 agentbeats_id = "019c1660-6bd2-75f0-bd28-8f5452d81508"
 name = "claude_opus_4_5"
-env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "openai/claude-sonnet-4.5" }
+env = { OPENROUTER_API_KEY = "${OPENROUTER_API_KEY}", AGENT_MODEL = "anthropic/claude-sonnet-4.5" }
 
 [config]
 # AVER Benchmark configuration
